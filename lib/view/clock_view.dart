@@ -29,7 +29,6 @@ class _HomePageState extends State<HomePage> {
 
   void fontCorrection(context) {
     fontsize = MediaQuery.of(context).size.width * 0.32;
-    print(fontsize);
   }
 
   @override
@@ -45,25 +44,27 @@ class _HomePageState extends State<HomePage> {
       () {
         time = DateTime.now();
         timeCorrection();
-        fontCorrection(context);
+        //fontCorrection(context);
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    if (fontsize == 0) {
-      fontCorrection(context);
-    }
-    Timer(Duration(milliseconds: 3000), () {
-      refreshTime(context);
-    });
+    fontCorrection(context);
+    Timer(
+      const Duration(milliseconds: 10000),
+      () {
+        if (DateTime.now().isAfter(time)) {
+          refreshTime(context);
+        }
+      },
+    );
     return Scaffold(
       body: Center(
-        child: Container(
+        child: SizedBox(
           height: (MediaQuery.of(context).size.height - kToolbarHeight),
           width: MediaQuery.of(context).size.width,
-          color: Colors.grey.shade900,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

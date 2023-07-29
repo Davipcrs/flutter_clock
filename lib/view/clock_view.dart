@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mobile_clock/view/alarm_view.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -61,26 +62,29 @@ class _HomePageState extends State<HomePage> {
       },
     );
     return Scaffold(
-      body: Center(
-        child: SizedBox(
-          height: (MediaQuery.of(context).size.height - kToolbarHeight),
-          width: MediaQuery.of(context).size.width,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              FittedBox(
-                fit: BoxFit.cover,
-                child: Text(
-                  "$timeHour:$timeMin",
-                  style: TextStyle(
-                    fontSize: fontsize,
+      body: Column(
+        children: [
+          SizedBox(
+            height: (MediaQuery.of(context).size.height - kToolbarHeight) * 0.3,
+            width: MediaQuery.of(context).size.width,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                FittedBox(
+                  fit: BoxFit.cover,
+                  child: Text(
+                    "$timeHour:$timeMin",
+                    style: TextStyle(
+                      fontSize: fontsize,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+          AlarmView(),
+        ],
       ),
     );
   }

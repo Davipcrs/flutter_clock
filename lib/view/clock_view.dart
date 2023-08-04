@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_clock/view/alarm_view.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          AlarmView(),
+          const AlarmView(),
         ],
       ),
     );

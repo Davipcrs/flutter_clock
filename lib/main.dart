@@ -18,7 +18,13 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeData.dark(
         useMaterial3: true,
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
+
+//TODO:
+// Criar o local de armazenamento
+// Funcionalidade de ativação e desativação
+// Funcionalidade de CRUD
+// Funcionalidade de toque (Fazer funcionar)

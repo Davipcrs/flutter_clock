@@ -1,7 +1,7 @@
-import 'package:mobile_clock/model/alarm.dart';
+import 'package:mobile_clock/model/alarm_model.dart';
 import 'package:mobile_clock/model/db.dart';
 
-retrieveAlarm(Alarm alarm) async {
+Future<List> retrieveAlarm() async {
   //https://docs.flutter.dev/cookbook/persistence/sqlite
 
   final DB db = DB.instance;
@@ -9,8 +9,10 @@ retrieveAlarm(Alarm alarm) async {
 
   var result = await client.query("alarm");
 
-  List<Alarm> list =
-      result.isNotEmpty ? result.map((c) => Alarm.fromMap(c)).toList() : [];
+  List<AlarmModel> list = result.isNotEmpty
+      ? result.map((c) => AlarmModel.fromMap(c)).toList()
+      : [];
 
+  print(list[0]);
   return list;
 }

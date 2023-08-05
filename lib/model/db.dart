@@ -15,8 +15,10 @@ class DB {
   }
 
   _initDatabase() async {
+    var path = join(await getDatabasesPath(), 'alarm.db');
+    print(path);
     return await openDatabase(
-      join(await getDatabasesPath(), 'alarm.db'),
+      path,
       version: 1,
       onCreate: _onCreate,
     );

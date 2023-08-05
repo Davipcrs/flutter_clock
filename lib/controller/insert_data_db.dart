@@ -1,12 +1,12 @@
-import 'package:mobile_clock/model/alarm.dart';
+import 'package:mobile_clock/model/alarm_model.dart';
 import 'package:mobile_clock/model/db.dart';
 import 'package:sqflite/sqflite.dart';
 
-Future<void> insertAlarm(Alarm alarm) async {
+Future<void> insertAlarm(AlarmModel alarm) async {
   //https://docs.flutter.dev/cookbook/persistence/sqlite
 
-  final DB db = DB.instance;
-  var client = await db.database;
+  Database db = await DB.instance.database;
 
-  await client.insert('alarm', alarm.toMap(), ConflictAlgorithm.replace);
+  await db.insert('alarm', alarm.toMap());
+  print(alarm.name);
 }

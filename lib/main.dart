@@ -1,8 +1,10 @@
+import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_clock/view/clock_view.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
+  await Alarm.init();
 }
 
 class MyApp extends StatelessWidget {

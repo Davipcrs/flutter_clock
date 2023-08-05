@@ -24,12 +24,13 @@ class DB {
 
   _onCreate(db, version) async {
     const String alarm = '''
-      CREATE TABLE alarm(alarm_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-      alarm_time TEXT, 
-      alarm_name TEXT, 
-      alarm_desc TEXT, 
-      alarm_priority INTEGER, 
-      alarm_isActive INTEGER
+      CREATE TABLE alarm(
+      id INTEGER PRIMARY KEY AUTOINCREMENT, 
+      time TEXT, 
+      name TEXT, 
+      desc TEXT, 
+      priority INTEGER, 
+      isActive INTEGER
       );
 
   ''';

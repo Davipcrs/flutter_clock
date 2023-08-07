@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_clock/controller/insert_data_db.dart';
-import 'package:mobile_clock/controller/retrive_data.dart';
-import 'package:mobile_clock/model/alarm_model.dart';
 
 class AlarmView extends StatefulWidget {
   const AlarmView({super.key});
@@ -13,29 +10,6 @@ class AlarmView extends StatefulWidget {
 class _AlarmViewState extends State<AlarmView> {
   bool test = false;
   late List alarms;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    insert();
-  }
-
-  retrieve() async {
-    alarms = await retrieveAlarm();
-  }
-
-  insert() async {
-    await insertAlarm(
-      AlarmModel(
-          time: DateTime.now(),
-          name: 'name',
-          isActive: true,
-          id: 0,
-          desc: 'desc',
-          priority: 0),
-    ).then((value) => retrieve());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +18,7 @@ class _AlarmViewState extends State<AlarmView> {
       child: ListView.builder(
         //scrollDirection: Axis.vertical,
         //shrinkWrap: true,
-        itemCount: alarms.length,
+        itemCount: 30,
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
             child: Column(

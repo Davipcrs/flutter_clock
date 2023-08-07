@@ -2,10 +2,9 @@ import 'package:alarm/alarm.dart';
 import 'package:mobile_clock/model/alarm_model.dart';
 
 class AlarmControler {
-  AlarmControler({required this.alarmModel});
-  AlarmModel alarmModel;
+  AlarmControler();
 
-  initAlarm() async {
+  initAlarm(AlarmModel alarmModel) async {
     AlarmSettings settings = AlarmSettings(
       id: alarmModel.id,
       dateTime: alarmModel.time,

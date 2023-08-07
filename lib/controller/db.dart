@@ -1,6 +1,8 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../model/alarm_model.dart';
+
 class DB {
   DB._();
 
@@ -16,7 +18,7 @@ class DB {
 
   _initDatabase() async {
     var path = join(await getDatabasesPath(), 'alarm.db');
-    print(path);
+
     return await openDatabase(
       path,
       version: 1,
@@ -34,10 +36,29 @@ class DB {
       priority INTEGER, 
       isActive INTEGER
       );
-
-  ''';
-
+      ''';
     await db.execute(alarm);
+  }
+
+  insertAlarm(AlarmModel alarm) async {
+    //https://docs.flutter.dev/cookbook/persistence/sqlite
+
+    Database db = await instance.database;
+
+    await db.insert('alarm', alarm.toMap());
+  }
+
+  retrieveAlarm() async {
+    //https://docs.flutter.dev/cookbook/persistence/sqlite
+
+    Database db = await instance.database;
+    var result = await db.query("alarm");
+
+    List<AlarmModel> list = result.isNotEmpty
+        ? result.map((c) => AlarmModel.fromMap(c)).toList()
+        : [];
+
+    return list;
   }
 
   //var databasepath = await getDatabasesPath();

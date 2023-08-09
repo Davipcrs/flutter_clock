@@ -30,3 +30,4 @@ class MyApp extends StatelessWidget {
 // Funcionalidade de ativação e desativação
 // Funcionalidade de CRUD
 // Funcionalidade de toque (Fazer funcionar)
+// Recurrent alarms

@@ -25,7 +25,6 @@ class AlarmModel {
     };
   }
 
-
   Map<String, dynamic> toMapDatabase() {
     return {
       'time': time.toString(),
@@ -33,11 +32,10 @@ class AlarmModel {
       'desc': desc,
       'priority': priority,
       'isActive': isActive ? 1 : 0,
-      
     };
   }
 
-  factory AlarmModel.fromMap(Map<String, dynamic> json) => AlarmModel(
+  factory AlarmModel.fromMapDatabase(Map<String, dynamic> json) => AlarmModel(
         id: json['id'],
         time: DateTime.parse(json['time']),
         name: json['name'],

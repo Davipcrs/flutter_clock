@@ -45,7 +45,7 @@ class DB {
 
     Database db = await instance.database;
 
-    await db.insert('alarm', alarm.toMap());
+    await db.insert('alarm', alarm.toMapDatabase());
   }
 
   retrieveAlarm() async {
@@ -55,7 +55,7 @@ class DB {
     var result = await db.query("alarm");
 
     List<AlarmModel> list = result.isNotEmpty
-        ? result.map((c) => AlarmModel.fromMap(c)).toList()
+        ? result.map((c) => AlarmModel.fromMapDatabase(c)).toList()
         : [];
 
     return list;

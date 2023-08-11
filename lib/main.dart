@@ -24,10 +24,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-//TODO:
-// Criar o local de armazenamento 
-// Funcionalidade de ativação e desativação
-// Funcionalidade de CRUD
-// Funcionalidade de toque (Fazer funcionar)
-// Recurrent alarms

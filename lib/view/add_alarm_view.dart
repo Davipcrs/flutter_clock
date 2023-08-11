@@ -11,15 +11,15 @@ class AddAlarmView extends StatefulWidget {
 }
 
 class _AddAlarmViewState extends State<AddAlarmView> {
-  TextEditingController name_controller = TextEditingController();
-  TextEditingController desc_controller = TextEditingController();
-  DateTime time_controller = DateTime.now();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+  DateTime dateTimeController = DateTime.now();
   late String timeHour;
   late String timeMinute;
   late String dateDay;
   late String dateMonth;
   late TimeOfDay? timeOfDay;
-  bool name_error_validator = false;
+  bool nameControllerErrorValidator = false;
 
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _AddAlarmViewState extends State<AddAlarmView> {
   void _timeGetter(context, time) async {
     timeOfDay = await timePicker(context, time);
     if (timeOfDay != null) {
-      time_controller = DateTime(
+      dateTimeController = DateTime(
         DateTime.now().year,
         DateTime.now().month,
         DateTime.now().day,
@@ -44,29 +44,29 @@ class _AddAlarmViewState extends State<AddAlarmView> {
   }
 
   void timeCorrection() {
-    timeHour = time_controller.hour.toString();
+    timeHour = dateTimeController.hour.toString();
     if (timeHour.length < 2) {
       timeHour = '0$timeHour';
     }
-    timeMinute = time_controller.minute.toString();
+    timeMinute = dateTimeController.minute.toString();
     if (timeMinute.length < 2) {
       timeMinute = '0$timeMinute';
     }
-    dateDay = time_controller.day.toString();
+    dateDay = dateTimeController.day.toString();
     if (dateDay.length < 2) {
       dateDay = '0$dateDay';
     }
-    dateMonth = time_controller.month.toString();
+    dateMonth = dateTimeController.month.toString();
     if (dateMonth.length < 2) {
       dateMonth = '0$dateMonth';
     }
   }
 
   _addOnTap() {
-    if (name_controller.text.isEmpty) {
+    if (nameController.text.isEmpty) {
       setState(
         () {
-          name_error_validator = true;
+          nameControllerErrorValidator = true;
         },
       );
       return;
@@ -74,15 +74,15 @@ class _AddAlarmViewState extends State<AddAlarmView> {
     AlarmModel alarmModel = AlarmModel(
       id: 0,
       isActive: true,
-      name: name_controller.text,
-      desc: desc_controller.text,
-      time: time_controller,
+      name: nameController.text,
+      desc: descriptionController.text,
+      time: dateTimeController,
     );
     DB.instance.insertAlarm(alarmModel);
 
-    name_controller.clear();
-    desc_controller.clear();
-    time_controller = DateTime.now();
+    nameController.clear();
+    descriptionController.clear();
+    dateTimeController = DateTime.now();
   }
 
   @override
@@ -93,11 +93,12 @@ class _AddAlarmViewState extends State<AddAlarmView> {
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: TextField(
-              controller: name_controller,
+              controller: nameController,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 labelText: 'Enter alarm Name',
-                errorText: name_error_validator ? 'Name cant be empty' : null,
+                errorText:
+                    nameControllerErrorValidator ? 'Name cant be empty' : null,
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -107,7 +108,7 @@ class _AddAlarmViewState extends State<AddAlarmView> {
           Padding(
             padding: const EdgeInsets.only(bottom: 16),
             child: TextField(
-              controller: desc_controller,
+              controller: descriptionController,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 labelText: 'Enter alarm Description',
@@ -153,7 +154,7 @@ class _AddAlarmViewState extends State<AddAlarmView> {
                 ),
                 onTap: () => _timeGetter(
                   context,
-                  TimeOfDay.fromDateTime(time_controller),
+                  TimeOfDay.fromDateTime(dateTimeController),
                 ),
               ),
             ],

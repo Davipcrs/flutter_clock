@@ -1,16 +1,33 @@
 # mobile_clock
+## A Mobile Clock App for creating Alarms.
 
-A new Flutter project.
+This app was made to study and learn some vital packages and functions for the flutter ecosystem, like SQFLITE. 
+Application still under construction, to be an alternative to the default mobile application.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+# Packages used in the project:
 
-A few resources to get you started if this is your first Flutter project:
+  cupertino_icons: ^1.0.2   (License: MIT)
+  sqflite: ^2.3.0           (License: BSD-2-Clause)
+  alarm: ^1.1.7             (License: MIT)
+  path: ^1.8.3              (License: BSD-3-Clause)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# TODO:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+View navigation
+Funcionalidade de ativação e desativação 
+Funcionalidade de CRUD (CR implemented)
+Funcionalidade de toque (Fazer funcionar) 
+Alarmes sem estar atrelado a datas
+Alarmes especificos de data.
+
+# OK TODOS:
+Criar o local de armazenamento 
+Add alarm view 
+Alarm DataModel and Conversion
+
+
+# Be free to Fork or use this app, but on your own risk.
+
+
+

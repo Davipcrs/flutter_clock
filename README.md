@@ -7,12 +7,12 @@ Application still under construction, to be an alternative to the default mobile
 
 # Packages used in the project:
 
-
-  cupertino_icons: ^1.0.2   (License: MIT)\ <br />
-  sqflite: ^2.3.0           (License: BSD-2-Clause)\ <br />
-  alarm: ^1.1.7             (License: MIT)\ <br />
-  path: ^1.8.3              (License: BSD-3-Clause) <br />
-
+<pre>
+  cupertino_icons: ^1.0.2   (License: MIT) 
+  sqflite: ^2.3.0           (License: BSD-2-Clause) 
+  alarm: ^1.1.7             (License: MIT) 
+  path: ^1.8.3              (License: BSD-3-Clause) 
+  </pre>
 # TODO:
 
 View navigation\

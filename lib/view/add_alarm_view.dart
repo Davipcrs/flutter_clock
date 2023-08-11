@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_clock/controller/db.dart';
 import 'package:mobile_clock/model/alarm_model.dart';
+import 'package:mobile_clock/view/time_picker_view.dart';
 
 class AddAlarmView extends StatefulWidget {
   const AddAlarmView({super.key});
@@ -17,12 +18,29 @@ class _AddAlarmViewState extends State<AddAlarmView> {
   late String timeMinute;
   late String dateDay;
   late String dateMonth;
+  late TimeOfDay? timeOfDay;
   bool name_error_validator = false;
 
   @override
   void initState() {
     super.initState();
     timeCorrection();
+  }
+
+  void _timeGetter(context, time) async {
+    timeOfDay = await timePicker(context, time);
+    if (timeOfDay != null) {
+      time_controller = DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        timeOfDay!.hour.toInt(),
+        timeOfDay!.minute.toInt(),
+      );
+    }
+    setState(() {
+      timeCorrection();
+    });
   }
 
   void timeCorrection() {
@@ -133,7 +151,10 @@ class _AddAlarmViewState extends State<AddAlarmView> {
                     ),
                   ),
                 ),
-                onTap: () => null,
+                onTap: () => _timeGetter(
+                  context,
+                  TimeOfDay.fromDateTime(time_controller),
+                ),
               ),
             ],
           ),

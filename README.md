@@ -10,7 +10,7 @@ Application still under construction, to be an alternative to the default mobile
   cupertino_icons: ^1.0.2   (License: MIT)\
   sqflite: ^2.3.0           (License: BSD-2-Clause)\
   alarm: ^1.1.7             (License: MIT)\
-  path: ^1.8.3              (License: BSD-3-Clause)\
+  path: ^1.8.3              (License: BSD-3-Clause)
 
 # TODO:
 
@@ -19,12 +19,12 @@ Funcionalidade de ativação e desativação\
 Funcionalidade de CRUD (CR implemented)\
 Funcionalidade de toque (Fazer funcionar)\
 Alarmes sem estar atrelado a datas\
-Alarmes especificos de data.\
+Alarmes especificos de data.
 
 # OK TODOS:
 Criar o local de armazenamento \
 Add alarm view \
-Alarm DataModel and Conversion \
+Alarm DataModel and Conversion 
 
 
 # Be free to Fork or use this app, but on your own risk.

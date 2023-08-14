@@ -4,7 +4,22 @@ import 'package:mobile_clock/model/alarm_model.dart';
 class AlarmControler {
   AlarmControler();
 
+  //Make Alarms note Date Dependent.
+  _modifyAlarmDate(AlarmModel alarmModel) {
+    DateTime aux = alarmModel.time;
+    alarmModel.time = DateTime(
+      DateTime.now().year,
+      DateTime.now().month,
+      DateTime.now().day,
+      aux.hour,
+      aux.minute,
+      aux.second,
+    );
+    return alarmModel;
+  }
+
   initAlarm(AlarmModel alarmModel) async {
+    alarmModel = _modifyAlarmDate(alarmModel);
     AlarmSettings settings = AlarmSettings(
       id: alarmModel.id,
       dateTime: alarmModel.time,

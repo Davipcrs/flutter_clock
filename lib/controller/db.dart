@@ -61,5 +61,41 @@ class DB {
     return list;
   }
 
+  updateAlarm(AlarmModel alarmModel) async {
+    Database db = await instance.database;
+
+    await db.update(
+      'alarm',
+      alarmModel.toMapDatabase(),
+      where: 'id = ?',
+      whereArgs: [alarmModel.id],
+    );
+
+    return;
+  }
+
+  deleteAlarm(int id) async {
+    Database db = await instance.database;
+
+    await db.delete(
+      'alarm',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+    return;
+  }
+
+  retrieveSpecificAlarm(int id) async {
+    Database db = await instance.database;
+
+    var result = await db.query(
+      'alarm',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+    AlarmModel alarmModel = AlarmModel.fromMapDatabase(result[0]);
+    return alarmModel;
+  }
+
   //var databasepath = await getDatabasesPath();
 }

@@ -5,26 +5,28 @@ This app was made to study and learn some vital packages and functions for the f
 Application still under construction, to be an alternative to the default mobile application.
 
 
-# Packages used in the project:
+## Packages used in the project:
 
 <pre>
   cupertino_icons: ^1.0.2   (License: MIT) 
   sqflite: ^2.3.0           (License: BSD-2-Clause) 
   alarm: ^1.1.7             (License: MIT) 
-  path: ^1.8.3              (License: BSD-3-Clause) 
-  </pre>
-# TODO:
+  path: ^1.8.3              (License: BSD-3-Clause)  
+</pre>
+## TODO:
 
 View navigation\
 Funcionalidade de ativação e desativação\
-Funcionalidade de CRUD (CR implemented)\
 Funcionalidade de toque (Fazer funcionar)\
-Alarmes sem estar atrelado a datas\
-Alarmes especificos de data.
+Alarmes especificos de data.\
+BottomSheet\
+Ativação automática de alarmes sem intervenção.
 
-# OK TODOS:
+## IMPLEMENTED TODOS:
 Criar o local de armazenamento \
 Add alarm view \
+Funcionalidade de CRUD\
+Alarmes sem estar atrelado a datas\
 Alarm DataModel and Conversion 
 
 

@@ -1,4 +1,5 @@
 import 'package:alarm/alarm.dart';
+import 'package:flutter/services.dart';
 import 'package:mobile_clock/model/alarm_model.dart';
 
 class AlarmControler {
@@ -23,7 +24,7 @@ class AlarmControler {
     AlarmSettings settings = AlarmSettings(
       id: alarmModel.id,
       dateTime: alarmModel.time,
-      assetAudioPath: 'audios/asset.mp3',
+      assetAudioPath: 'assets/audio.mp3',
       vibrate: true,
       notificationTitle: alarmModel.name,
       notificationBody: alarmModel.desc,

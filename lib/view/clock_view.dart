@@ -84,12 +84,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          //const AlarmView(),
-          SizedBox(
-            height: (MediaQuery.of(context).size.height) * 0.7,
-            width: (MediaQuery.of(context).size.width) * 0.7,
-            child: const AddAlarmView(),
-          ),
+          const AlarmView(),
 
           /*
           SizedBox(

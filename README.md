@@ -16,17 +16,19 @@ Application still under construction, to be an alternative to the default mobile
 ## TODO:
 
 View navigation\
-Funcionalidade de ativação e desativação\
-Funcionalidade de toque (Fazer funcionar)\
+
 Alarmes especificos de data.\
 BottomSheet\
-Ativação automática de alarmes sem intervenção.
+Ativação automática de alarmes sem intervenção.\
+Automatizar UI em relação a alarmes ativados e desativados com base no ID.
 
 ## IMPLEMENTED TODOS:
 Criar o local de armazenamento \
 Add alarm view \
 Funcionalidade de CRUD\
 Alarmes sem estar atrelado a datas\
+Toque\
+Funcionalidade de ativação e desativação\
 Alarm DataModel and Conversion 
 
 

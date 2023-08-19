@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_clock/controller/alarm_controller.dart';
 import 'package:mobile_clock/controller/db.dart';
 import 'package:mobile_clock/model/alarm_model.dart';
 
@@ -10,16 +11,25 @@ class AlarmView extends StatefulWidget {
 }
 
 class _AlarmViewState extends State<AlarmView> {
-  bool test = false;
   late List alarms;
 
-  _retrieveAlarms() async {
+  _activateAlarmsOnInit() async {
     alarms = await DB.instance.retrieveAlarm();
+    AlarmControler controler = AlarmControler();
+
+    for (int i = 0; i < alarms.length; i++) {
+      if (alarms[i].isActive) {
+        controler.initAlarm(alarms[i]);
+      }
+    }
+
+    //print(controler.listActiveAlarms());
+    //return controler;
   }
 
   @override
   Widget build(BuildContext context) {
-    _retrieveAlarms();
+    //AlarmControler alarmControler = _activateAlarmsOnInit();
     return FutureBuilder<dynamic>(
         future: DB.instance.retrieveAlarm(),
         builder: (context, snapshot) {
@@ -37,10 +47,10 @@ class _AlarmViewState extends State<AlarmView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "hora: ${snapshot.data[index].name}",
+                            "Nome: ${snapshot.data[index].name}",
                             style: TextStyle(
                                 fontSize:
-                                    MediaQuery.of(context).size.width * 0.03),
+                                    MediaQuery.of(context).size.width * 0.06),
                           ),
                           Column(
                             children: [
@@ -48,8 +58,21 @@ class _AlarmViewState extends State<AlarmView> {
                                 padding:
                                     const EdgeInsets.only(right: 16, top: 12),
                                 child: Switch(
-                                  value: test,
-                                  onChanged: (value) => print("changed"),
+                                  value: snapshot.data[index].isActive,
+                                  onChanged: (value) {
+                                    snapshot.data[index].isActive = value;
+                                    if (snapshot.data[index].isActive == true) {
+                                      AlarmControler()
+                                          .initAlarm(snapshot.data[index]);
+                                    } else {
+                                      AlarmControler().disableAlarm(
+                                          snapshot.data[index].id);
+                                    }
+                                    setState(() {
+                                      DB.instance
+                                          .updateAlarm(snapshot.data[index]);
+                                    });
+                                  },
                                 ),
                               ),
                             ],
@@ -59,7 +82,7 @@ class _AlarmViewState extends State<AlarmView> {
                       Row(
                         children: [
                           Text(
-                            "Desc",
+                            "Hora: ${snapshot.data[index].time.toString().split('.')[0]}",
                             style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.width * 0.05),

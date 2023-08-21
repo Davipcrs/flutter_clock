@@ -13,7 +13,7 @@ Application still under construction, to be an alternative to the default mobile
   alarm: ^1.1.7             (License: MIT) 
   path: ^1.8.3              (License: BSD-3-Clause)  
 </pre>
-## TODO:
+## TODO FEATURES:
 
 View navigation\
 
@@ -22,13 +22,13 @@ BottomSheet\
 Ativação automática de alarmes sem intervenção.\
 Automatizar UI em relação a alarmes ativados e desativados com base no ID.
 
-## IMPLEMENTED TODOS:
-Criar o local de armazenamento \
+## IMPLEMENTED FEATURES:
+Local Storage \
 Add alarm view \
-Funcionalidade de CRUD\
-Alarmes sem estar atrelado a datas\
-Toque\
-Funcionalidade de ativação e desativação\
+Database CRUD\
+Anonymous time Alarms\
+Alarm Ring\
+Activate and Deativate alarms\
 Alarm DataModel and Conversion 
 
 

@@ -16,11 +16,9 @@ Application still under construction, to be an alternative to the default mobile
 ## TODO FEATURES:
 
 View navigation\
-
 Alarmes especificos de data.\
 BottomSheet\
-Ativação automática de alarmes sem intervenção.\
-Automatizar UI em relação a alarmes ativados e desativados com base no ID.
+Ativação automática de alarmes sem intervenção.
 
 ## IMPLEMENTED FEATURES:
 Local Storage \

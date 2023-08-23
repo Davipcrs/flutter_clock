@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:mobile_clock/view/add_alarm_view.dart';
 import 'package:mobile_clock/view/alarm_view.dart';
@@ -74,10 +73,14 @@ class _HomePageState extends State<HomePage> {
               children: [
                 FittedBox(
                   fit: BoxFit.cover,
-                  child: Text(
-                    "$timeHour:$timeMin",
-                    style: TextStyle(
-                      fontSize: fontsize,
+                  child: InkWell(
+                    onTap: () {},
+                    
+                    child: Text(
+                      "$timeHour:$timeMin",
+                      style: TextStyle(
+                        fontSize: fontsize,
+                      ),
                     ),
                   ),
                 ),

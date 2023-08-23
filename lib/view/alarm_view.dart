@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_clock/controller/alarm_controller.dart';
 import 'package:mobile_clock/controller/db.dart';
 import 'package:mobile_clock/model/alarm_model.dart';
+import 'package:mobile_clock/view/bottom_sheet.dart';
 
 class AlarmView extends StatefulWidget {
   const AlarmView({super.key});
@@ -29,7 +30,7 @@ class _AlarmViewState extends State<AlarmView> {
 
   @override
   Widget build(BuildContext context) {
-    //AlarmControler alarmControler = _activateAlarmsOnInit();
+    _activateAlarmsOnInit();
     return FutureBuilder<dynamic>(
         future: DB.instance.retrieveAlarm(),
         builder: (context, snapshot) {
@@ -91,7 +92,7 @@ class _AlarmViewState extends State<AlarmView> {
                       ),
                     ],
                   ),
-                  onTap: () => print("tapped"),
+                  onTap: () => alarmBottomSheet(context, snapshot.data[index]),
                 );
               },
             ),

@@ -77,103 +77,117 @@ class _AddAlarmViewState extends State<AddAlarmView> {
       name: nameController.text,
       desc: descriptionController.text,
       time: dateTimeController,
+      dayless: true //dayless alarms
     );
     DB.instance.insertAlarm(alarmModel);
 
     nameController.clear();
     descriptionController.clear();
     dateTimeController = DateTime.now();
+
+    Navigator.of(context).pop();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: TextField(
-              controller: nameController,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText: 'Enter alarm Name',
-                errorText:
-                    nameControllerErrorValidator ? 'Name cant be empty' : null,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16),
-            child: TextField(
-              controller: descriptionController,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                labelText: 'Enter alarm Description',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-              ),
-            ),
-          ),
-          Row(
+      body: SafeArea(
+        child: SizedBox(
+          width: (MediaQuery.of(context).size.width) * 0.95,
+          height: (MediaQuery.of(context).size.height) - kToolbarHeight,
+          child: Column(
             children: [
-              InkWell(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  width: MediaQuery.of(context).size.width * 0.35,
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  child: Center(
-                    child: Text(
-                      '$dateDay/$dateMonth',
-                      style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width * 0.1),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: TextField(
+                  controller: nameController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    labelText: 'Enter alarm Name',
+                    errorText:
+                        nameControllerErrorValidator ? 'Name cant be empty' : null,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                 ),
-                onTap: () => null,
               ),
-              InkWell(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  width: MediaQuery.of(context).size.width * 0.35,
-                  height: MediaQuery.of(context).size.height * 0.2,
-                  child: Center(
-                    child: Text(
-                      '$timeHour:$timeMinute',
-                      style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width * 0.1),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: TextField(
+                  controller: descriptionController,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    labelText: 'Enter alarm Description',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                 ),
-                onTap: () => _timeGetter(
-                  context,
-                  TimeOfDay.fromDateTime(dateTimeController),
-                ),
               ),
+              Row(
+                children: [
+                  InkWell(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.35,
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      child: Center(
+                        child: Text(
+                          '$dateDay/$dateMonth',
+                          style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width * 0.1),
+                        ),
+                      ),
+                    ),
+                    onTap: () => null,
+                  ),
+                  InkWell(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      width: MediaQuery.of(context).size.width * 0.35,
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      child: Center(
+                        child: Text(
+                          '$timeHour:$timeMinute',
+                          style: TextStyle(
+                              fontSize: MediaQuery.of(context).size.width * 0.1),
+                        ),
+                      ),
+                    ),
+                    onTap: () => _timeGetter(
+                      context,
+                      TimeOfDay.fromDateTime(dateTimeController),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      nameController.clear();
+                      descriptionController.clear();
+                      dateTimeController = DateTime.now();
+                      Navigator.of(context).pop();
+                      },
+                    child: const Text('Cancel'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () => _addOnTap(),
+                    child: const Text('Add'),
+                  ),
+                ],
+              )
             ],
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              ElevatedButton(
-                onPressed: () => null,
-                child: Text('Cancel'),
-              ),
-              ElevatedButton(
-                onPressed: () => _addOnTap(),
-                child: Text('Add'),
-              ),
-            ],
-          )
-        ],
+        ),
       ),
     );
   }

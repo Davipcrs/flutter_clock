@@ -18,7 +18,8 @@ Application still under construction, to be an alternative to the default mobile
 View navigation\
 Alarmes especificos de data.\
 BottomSheet\
-Ativação automática de alarmes sem intervenção.
+Ativação automática de alarmes sem intervenção.\
+Diference between day-less alarms and day specifics alarms in the database and model.
 
 ## IMPLEMENTED FEATURES:
 Local Storage \

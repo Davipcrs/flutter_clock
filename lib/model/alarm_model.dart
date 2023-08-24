@@ -6,6 +6,7 @@ class AlarmModel {
     this.desc,
     this.priority,
     required this.id,
+    required this.dayless,
   });
   DateTime time;
   String name;
@@ -13,6 +14,7 @@ class AlarmModel {
   late String? desc;
   late int? priority;
   late int id;
+  bool dayless; //implement data conversions.
 
   Map<String, dynamic> toMap() {
     return {
@@ -22,6 +24,7 @@ class AlarmModel {
       'isActive': isActive ? 1 : 0,
       'desc': desc,
       'priority': priority,
+      'dayless': dayless ? 1 : 0,
     };
   }
 
@@ -32,6 +35,7 @@ class AlarmModel {
       'desc': desc,
       'priority': priority,
       'isActive': isActive ? 1 : 0,
+      'dayless': dayless ? 1 : 0,
     };
   }
 
@@ -42,6 +46,7 @@ class AlarmModel {
         isActive: json['isActive'] == 0 ? false : true,
         desc: json['desc'],
         priority: json['priority'],
+        dayless: json['dayless'] == 0 ? false : true,
       );
 
   factory AlarmModel.fromAlarmSettings(Map<String, dynamic> settings) =>
@@ -51,5 +56,6 @@ class AlarmModel {
         isActive: true,
         id: settings['id'],
         desc: settings['notificationBody'],
+        dayless: false,
       );
 }

@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
   late String timeHour;
   late String timeMin;
   double fontsize = 20;
+  var alarmView = const AlarmView();
   //Font Size is multiplied by a constant to be made responsible
 
   void timeCorrection() {
@@ -34,7 +35,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     time = DateTime.now();
     timeCorrection();
     super.initState();
@@ -74,7 +74,12 @@ class _HomePageState extends State<HomePage> {
                 FittedBox(
                   fit: BoxFit.cover,
                   child: InkWell(
-                    onTap: () {},
+                    onTap: () async {
+                      await Navigator.of(context).pushNamed('/addAlarm');
+                      setState(() {
+                        alarmView = const AlarmView();
+                      });
+                    },
                     
                     child: Text(
                       "$timeHour:$timeMin",
@@ -87,7 +92,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-          const AlarmView(),
+          alarmView,
 
           /*
           SizedBox(

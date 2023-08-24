@@ -1,5 +1,4 @@
 import 'package:alarm/alarm.dart';
-import 'package:flutter/services.dart';
 import 'package:mobile_clock/model/alarm_model.dart';
 
 class AlarmControler {
@@ -7,6 +6,7 @@ class AlarmControler {
 
   //Make Alarms note Date Dependent.
   _modifyAlarmDate(AlarmModel alarmModel) {
+    if(alarmModel.dayless){
     DateTime aux = alarmModel.time;
     alarmModel.time = DateTime(
       DateTime.now().year,
@@ -17,6 +17,7 @@ class AlarmControler {
       aux.second,
     );
     return alarmModel;
+    }
   }
 
   initAlarm(AlarmModel alarmModel) async {

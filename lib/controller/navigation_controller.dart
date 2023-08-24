@@ -11,10 +11,10 @@ class RouteGen{
       case '/':
         return MaterialPageRoute(builder: (_) => HomePage());
 
-      case 'addAlarm':
+      case '/addAlarm':
         return MaterialPageRoute(builder: (_) => AddAlarmView());
 
-      case 'editAlarm':
+      case '/editAlarm':
         return MaterialPageRoute(builder: (_) => EditAlarmView(args: args)); 
 
       default:

@@ -41,6 +41,7 @@ class _AlarmViewState extends State<AlarmView> {
               //shrinkWrap: true,
               itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
+                
                 return InkWell(
                   child: Column(
                     children: [
@@ -83,6 +84,7 @@ class _AlarmViewState extends State<AlarmView> {
                       Row(
                         children: [
                           Text(
+                            snapshot.data[index].dayless ? "Hora: Dayless" : //Add Hour in the interface.
                             "Hora: ${snapshot.data[index].time.toString().split('.')[0]}",
                             style: TextStyle(
                                 fontSize:

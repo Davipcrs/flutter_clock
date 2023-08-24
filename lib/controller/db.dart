@@ -34,7 +34,8 @@ class DB {
       name TEXT, 
       desc TEXT, 
       priority INTEGER, 
-      isActive INTEGER
+      isActive INTEGER,
+      dayless INTEGER
       );
       ''';
     await db.execute(alarm);

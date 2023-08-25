@@ -15,7 +15,6 @@ Application still under construction, to be an alternative to the default mobile
 </pre>
 ## TODO FEATURES:
 
-Alarmes especificos de data (Finish Add Alarm View).\
 BottomSheet (Finish navigation)\
 (Need this to finsh navigation):\
 View Alarm view\
@@ -32,7 +31,8 @@ Alarm DataModel and Conversion\
 View navigation\
 Alarm auto activation\
 Edit View\
-Diference between day-less alarms and day specifics alarms in the database and model.
+Diference between day-less alarms and day specifics alarms in the database and model.\
+Date Specific alarms.
 
 
 # Be free to Fork or use this app, but on your own risk.

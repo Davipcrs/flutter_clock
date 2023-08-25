@@ -6,18 +6,19 @@ class AlarmController {
 
   //Make Alarms note Date Dependent.
   _modifyAlarmDate(AlarmModel alarmModel) {
-    if(alarmModel.dayless){
-    DateTime aux = alarmModel.time;
-    alarmModel.time = DateTime(
-      DateTime.now().year,
-      DateTime.now().month,
-      DateTime.now().day,
-      aux.hour,
-      aux.minute,
-      aux.second,
-    );
-    return alarmModel;
+    if (alarmModel.dayless) {
+      DateTime aux = alarmModel.time;
+      alarmModel.time = DateTime(
+        DateTime.now().year,
+        DateTime.now().month,
+        DateTime.now().day,
+        aux.hour,
+        aux.minute,
+        aux.second,
+      );
+      return alarmModel;
     }
+    return alarmModel;
   }
 
   initAlarm(AlarmModel alarmModel) async {
@@ -30,7 +31,6 @@ class AlarmController {
       notificationTitle: alarmModel.name,
       notificationBody: alarmModel.desc,
       volumeMax: true,
-      loopAudio: false,
     );
     await Alarm.set(alarmSettings: settings);
   }
@@ -48,12 +48,13 @@ class AlarmController {
   }
 
   isAlarmInative(int id) {
-    if(Alarm.getAlarm(id) == null){return true;}
+    if (Alarm.getAlarm(id) == null) {
+      return true;
+    }
     return false;
   }
 
   disableAlarm(int id) async {
     await Alarm.stop(id);
-    
   }
 }

@@ -74,12 +74,15 @@ class _HomePageState extends State<HomePage> {
                   fit: BoxFit.cover,
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.of(context).pushNamed('/addAlarm').then((value) => setState(() {
-                        alarmView = const AlarmView();
-                      }));
-                      
+                      await Navigator.of(context)
+                          .pushNamed('/addAlarm')
+                          .then((value) => setState(() {
+                                alarmView = const AlarmView();
+                                Future.delayed(
+                                  const Duration(microseconds: 500),
+                                );
+                              }));
                     },
-                    
                     child: Text(
                       "$timeHour:$timeMin",
                       style: TextStyle(

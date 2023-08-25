@@ -23,10 +23,13 @@ class _AddAlarmViewState extends State<AddAlarmView> {
       hour: dateTimeController.hour, minute: dateTimeController.minute);
   bool nameControllerErrorValidator = false;
 
+  late bool isDayless;
+
   @override
   void initState() {
     super.initState();
     timeCorrection();
+    isDayless = false;
   }
 
   void _dateGetter(context) async {
@@ -95,7 +98,7 @@ class _AddAlarmViewState extends State<AddAlarmView> {
         name: nameController.text,
         desc: descriptionController.text,
         time: dateTimeController,
-        dayless: true //dayless alarms
+        dayless: isDayless //dayless alarms
         );
     DB.instance.insertAlarm(alarmModel);
 
@@ -149,14 +152,40 @@ class _AddAlarmViewState extends State<AddAlarmView> {
                   ),
                 ),
               ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height * 0.1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text('isDayless'),
+                    Switch(
+                      value: isDayless,
+                      onChanged: (value) {
+                        setState(
+                          () {
+                            isDayless = value;
+                          },
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
               Row(
                 children: [
                   InkWell(
+                    splashColor: isDayless
+                        ? Colors.transparent
+                        : Theme.of(context).splashColor,
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      width: MediaQuery.of(context).size.width * 0.35,
+                          borderRadius: BorderRadius.circular(12),
+                          color: isDayless
+                              ? Theme.of(context).disabledColor
+                              : Theme.of(context).scaffoldBackgroundColor),
+                      width: MediaQuery.of(context).size.width * 0.5,
                       height: MediaQuery.of(context).size.height * 0.2,
                       child: Center(
                         child: Text(
@@ -168,7 +197,9 @@ class _AddAlarmViewState extends State<AddAlarmView> {
                       ),
                     ),
                     onTap: () {
-                      _dateGetter(context);
+                      if (!isDayless) {
+                        _dateGetter(context);
+                      }
                     },
                   ),
                   InkWell(
@@ -176,7 +207,7 @@ class _AddAlarmViewState extends State<AddAlarmView> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      width: MediaQuery.of(context).size.width * 0.35,
+                      width: MediaQuery.of(context).size.width * 0.5,
                       height: MediaQuery.of(context).size.height * 0.2,
                       child: Center(
                         child: Text(

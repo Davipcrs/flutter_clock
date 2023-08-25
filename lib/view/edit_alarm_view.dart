@@ -21,6 +21,7 @@ class _EditAlarmViewState extends State<EditAlarmView> {
     nameController = TextEditingController(text: alarmModel.name);
     descriptionController = TextEditingController(text: alarmModel.desc);
     dateTimeController = alarmModel.time;
+    isDayless = alarmModel.dayless;
 
     timeCorrection();
   }
@@ -37,6 +38,8 @@ class _EditAlarmViewState extends State<EditAlarmView> {
   late TimeOfDay? timeOfDay = TimeOfDay(
       hour: dateTimeController.hour, minute: dateTimeController.minute);
   bool nameControllerErrorValidator = false;
+
+  late bool isDayless;
 
   void _dateGetter(context) async {
     DateTime? dateTime = await DatePicker(context);
@@ -89,7 +92,7 @@ class _EditAlarmViewState extends State<EditAlarmView> {
     }
   }
 
-  _addOnTap() {
+  _editOnTap() {
     if (nameController.text.isEmpty) {
       setState(
         () {
@@ -101,6 +104,7 @@ class _EditAlarmViewState extends State<EditAlarmView> {
     alarmModel.desc = descriptionController.text;
     alarmModel.name = nameController.text;
     alarmModel.time = dateTimeController;
+    alarmModel.dayless = isDayless;
 
     DB.instance.updateAlarm(alarmModel);
 
@@ -157,11 +161,16 @@ class _EditAlarmViewState extends State<EditAlarmView> {
               Row(
                 children: [
                   InkWell(
+                    splashColor: isDayless
+                        ? Colors.transparent
+                        : Theme.of(context).splashColor,
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      width: MediaQuery.of(context).size.width * 0.35,
+                          borderRadius: BorderRadius.circular(12),
+                          color: isDayless
+                              ? Theme.of(context).disabledColor
+                              : Theme.of(context).scaffoldBackgroundColor),
+                      width: MediaQuery.of(context).size.width * 0.5,
                       height: MediaQuery.of(context).size.height * 0.2,
                       child: Center(
                         child: Text(
@@ -172,14 +181,18 @@ class _EditAlarmViewState extends State<EditAlarmView> {
                         ),
                       ),
                     ),
-                    onTap: () => _dateGetter(context),
+                    onTap: () {
+                      if (!isDayless) {
+                        _dateGetter(context);
+                      }
+                    },
                   ),
                   InkWell(
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      width: MediaQuery.of(context).size.width * 0.35,
+                      width: MediaQuery.of(context).size.width * 0.50,
                       height: MediaQuery.of(context).size.height * 0.2,
                       child: Center(
                         child: Text(
@@ -216,7 +229,7 @@ class _EditAlarmViewState extends State<EditAlarmView> {
                   Padding(
                     padding: const EdgeInsets.only(right: 16),
                     child: ElevatedButton(
-                      onPressed: () => _addOnTap(),
+                      onPressed: () => _editOnTap(),
                       child: const Text('Add'),
                     ),
                   ),

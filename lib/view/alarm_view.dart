@@ -103,6 +103,9 @@ class _AlarmViewState extends State<AlarmView> {
                     await alarmBottomSheet(context, snapshot.data[index]).then(
                       (value) => setState(
                         () {
+                          Future.delayed(
+                            const Duration(microseconds: 500),
+                          );
                           strings = AppStrings();
                         },
                       ),

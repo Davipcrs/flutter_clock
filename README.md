@@ -18,9 +18,8 @@ Application still under construction, to be an alternative to the default mobile
 Alarmes especificos de data (Finish Add Alarm View).\
 BottomSheet (Finish navigation)\
 (Need this to finsh navigation):\
-Edit View\
 View Alarm view\
-Delete Alarm Dialog\
+Delete Alarm Dialog
 
 ## IMPLEMENTED FEATURES:
 Local Storage \
@@ -32,6 +31,7 @@ Activate and Deativate alarms\
 Alarm DataModel and Conversion\
 View navigation\
 Alarm auto activation\
+Edit View\
 Diference between day-less alarms and day specifics alarms in the database and model.
 
 

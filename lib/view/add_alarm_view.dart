@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_clock/controller/db.dart';
 import 'package:mobile_clock/model/alarm_model.dart';
-import 'package:mobile_clock/view/date_picker_view.dart';
-import 'package:mobile_clock/view/time_picker_view.dart';
+import 'package:mobile_clock/view/pickers/date_picker_view.dart';
+import 'package:mobile_clock/view/pickers/time_picker_view.dart';
 
 class AddAlarmView extends StatefulWidget {
   const AddAlarmView({super.key});
@@ -111,7 +111,7 @@ class _AddAlarmViewState extends State<AddAlarmView> {
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
-          width: (MediaQuery.of(context).size.width) * 0.95,
+          width: (MediaQuery.of(context).size.width),
           height: (MediaQuery.of(context).size.height) - kToolbarHeight,
           child: Column(
             children: [
@@ -133,13 +133,18 @@ class _AddAlarmViewState extends State<AddAlarmView> {
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 16),
-                child: TextField(
-                  controller: descriptionController,
-                  keyboardType: TextInputType.text,
-                  decoration: InputDecoration(
-                    labelText: 'Enter alarm Description',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  child: TextField(
+                    expands: true,
+                    maxLines: null,
+                    controller: descriptionController,
+                    keyboardType: TextInputType.multiline,
+                    decoration: InputDecoration(
+                      labelText: 'Enter alarm Description',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
                     ),
                   ),
                 ),
@@ -162,7 +167,9 @@ class _AddAlarmViewState extends State<AddAlarmView> {
                         ),
                       ),
                     ),
-                    onTap: () => _dateGetter(context),
+                    onTap: () {
+                      _dateGetter(context);
+                    },
                   ),
                   InkWell(
                     child: Container(
@@ -191,18 +198,24 @@ class _AddAlarmViewState extends State<AddAlarmView> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      nameController.clear();
-                      descriptionController.clear();
-                      dateTimeController = DateTime.now();
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text('Cancel'),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        nameController.clear();
+                        descriptionController.clear();
+                        dateTimeController = DateTime.now();
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Cancel'),
+                    ),
                   ),
-                  ElevatedButton(
-                    onPressed: () => _addOnTap(),
-                    child: const Text('Add'),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 16),
+                    child: ElevatedButton(
+                      onPressed: () => _addOnTap(),
+                      child: const Text('Add'),
+                    ),
                   ),
                 ],
               )

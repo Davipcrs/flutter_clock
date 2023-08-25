@@ -1,7 +1,6 @@
+import 'package:mobile_clock/model/alarm_model.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-
-import '../model/alarm_model.dart';
 
 class DB {
   DB._();

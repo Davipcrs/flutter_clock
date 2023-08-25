@@ -16,11 +16,11 @@ class _AlarmViewState extends State<AlarmView> {
 
   _activateAlarmsOnInit() async {
     alarms = await DB.instance.retrieveAlarm();
-    AlarmControler controler = AlarmControler();
+    AlarmController controller = AlarmController();
 
     for (int i = 0; i < alarms.length; i++) {
       if (alarms[i].isActive) {
-        controler.initAlarm(alarms[i]);
+        controller.initAlarm(alarms[i]);
       }
     }
 
@@ -64,10 +64,10 @@ class _AlarmViewState extends State<AlarmView> {
                                   onChanged: (value) {
                                     snapshot.data[index].isActive = value;
                                     if (snapshot.data[index].isActive == true) {
-                                      AlarmControler()
+                                      AlarmController()
                                           .initAlarm(snapshot.data[index]);
                                     } else {
-                                      AlarmControler().disableAlarm(
+                                      AlarmController().disableAlarm(
                                           snapshot.data[index].id);
                                     }
                                     setState(() {
@@ -84,7 +84,7 @@ class _AlarmViewState extends State<AlarmView> {
                       Row(
                         children: [
                           Text(
-                            snapshot.data[index].dayless ? "Hora: Dayless" : //Add Hour in the interface.
+                            snapshot.data[index].dayless ? "Hora: ${snapshot.data[index].time.toString().split('.')[0].split(':')[3]}:${snapshot.data[index].time.toString().split('.')[0].split(':')[3]}" : //Add Hour in the interface.
                             "Hora: ${snapshot.data[index].time.toString().split('.')[0]}",
                             style: TextStyle(
                                 fontSize:

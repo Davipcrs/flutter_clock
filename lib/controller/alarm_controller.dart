@@ -1,8 +1,8 @@
 import 'package:alarm/alarm.dart';
 import 'package:mobile_clock/model/alarm_model.dart';
 
-class AlarmControler {
-  AlarmControler();
+class AlarmController {
+  AlarmController();
 
   //Make Alarms note Date Dependent.
   _modifyAlarmDate(AlarmModel alarmModel) {

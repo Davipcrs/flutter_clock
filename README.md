@@ -15,11 +15,12 @@ Application still under construction, to be an alternative to the default mobile
 </pre>
 ## TODO FEATURES:
 
-View navigation\
-Alarmes especificos de data.\
-BottomSheet\
-Ativação automática de alarmes sem intervenção.\
-Diference between day-less alarms and day specifics alarms in the database and model.
+Alarmes especificos de data (Finish Add Alarm View).\
+BottomSheet (Finish navigation)\
+(Need this to finsh navigation):\
+Edit View\
+View Alarm view\
+Delete Alarm Dialog\
 
 ## IMPLEMENTED FEATURES:
 Local Storage \
@@ -28,7 +29,10 @@ Database CRUD\
 Anonymous time Alarms\
 Alarm Ring\
 Activate and Deativate alarms\
-Alarm DataModel and Conversion 
+Alarm DataModel and Conversion\
+View navigation\
+Alarm auto activation\
+Diference between day-less alarms and day specifics alarms in the database and model.
 
 
 # Be free to Fork or use this app, but on your own risk.

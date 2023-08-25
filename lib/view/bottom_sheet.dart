@@ -13,19 +13,22 @@ alarmBottomSheet(context, AlarmModel model){
         Expanded(
           child: InkWell(onTap: () {},
             borderRadius: const BorderRadius.only(topLeft: Radius.circular(26), topRight: Radius.circular(26),),
+            child: const Center(child: Text("View Alarm"),),
+          
+          ),
+        ),
+        Expanded(
+          child: InkWell(onTap: () async{
+            await Navigator.of(context).pushNamed('/editAlarm', arguments: model).then((value) => Navigator.of(context).pop());
+          },
             child: const Center(child: Text("Edit Alarm"),),
+
           
           ),
         ),
         Expanded(
           child: InkWell(onTap: () {},
-            child: const Center(child: Text("Edit Alarm"),),
-          
-          ),
-        ),
-        Expanded(
-          child: InkWell(onTap: () {},
-            child: const Center(child: Text("Edit Alarm"),),
+            child: const Center(child: Text("Delete Alarm"),),
           
           ),
         ),

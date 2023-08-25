@@ -75,10 +75,10 @@ class _HomePageState extends State<HomePage> {
                   fit: BoxFit.cover,
                   child: InkWell(
                     onTap: () async {
-                      await Navigator.of(context).pushNamed('/addAlarm');
-                      setState(() {
+                      await Navigator.of(context).pushNamed('/addAlarm').then((value) => setState(() {
                         alarmView = const AlarmView();
-                      });
+                      }));
+                      
                     },
                     
                     child: Text(

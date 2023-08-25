@@ -30,6 +30,7 @@ class AlarmController {
       notificationTitle: alarmModel.name,
       notificationBody: alarmModel.desc,
       volumeMax: true,
+      loopAudio: false,
     );
     await Alarm.set(alarmSettings: settings);
   }
@@ -46,7 +47,13 @@ class AlarmController {
     return alarmModelList;
   }
 
+  isAlarmInative(int id) {
+    if(Alarm.getAlarm(id) == null){return true;}
+    return false;
+  }
+
   disableAlarm(int id) async {
     await Alarm.stop(id);
+    
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_clock/controller/alarm_controller.dart';
 import 'package:mobile_clock/controller/db.dart';
-import 'package:mobile_clock/model/alarm_model.dart';
+import 'package:mobile_clock/controller/string_controller.dart';
 import 'package:mobile_clock/view/bottom_sheet.dart';
 
 class AlarmView extends StatefulWidget {
@@ -18,8 +18,10 @@ class _AlarmViewState extends State<AlarmView> {
     alarms = await DB.instance.retrieveAlarm();
     AlarmController controller = AlarmController();
 
+    //print(await controller.listActiveAlarms());
+
     for (int i = 0; i < alarms.length; i++) {
-      if (alarms[i].isActive) {
+      if (alarms[i].isActive && controller.isAlarmInative(alarms[i].id)) {
         controller.initAlarm(alarms[i]);
       }
     }
@@ -31,6 +33,8 @@ class _AlarmViewState extends State<AlarmView> {
   @override
   Widget build(BuildContext context) {
     _activateAlarmsOnInit();
+    AppStrings strings = AppStrings();
+    
     return FutureBuilder<dynamic>(
         future: DB.instance.retrieveAlarm(),
         builder: (context, snapshot) {
@@ -84,8 +88,8 @@ class _AlarmViewState extends State<AlarmView> {
                       Row(
                         children: [
                           Text(
-                            snapshot.data[index].dayless ? "Hora: ${snapshot.data[index].time.toString().split('.')[0].split(':')[3]}:${snapshot.data[index].time.toString().split('.')[0].split(':')[3]}" : //Add Hour in the interface.
-                            "Hora: ${snapshot.data[index].time.toString().split('.')[0]}",
+                            snapshot.data[index].dayless ? "${strings.strHour} ${snapshot.data[index].time.toString().split('.')[0].split(' ')[1]}" : //Add Hour in the interface.
+                            "${strings.strDay} ${snapshot.data[index].time.toString().split('.')[0]}",
                             style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.width * 0.05),
@@ -94,7 +98,9 @@ class _AlarmViewState extends State<AlarmView> {
                       ),
                     ],
                   ),
-                  onTap: () => alarmBottomSheet(context, snapshot.data[index]),
+                  onTap: () async { await alarmBottomSheet(context, snapshot.data[index]).then((value) => setState(() {
+                        strings = AppStrings();
+                      },),);},
                 );
               },
             ),

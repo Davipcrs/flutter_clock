@@ -34,7 +34,7 @@ class _AlarmViewState extends State<AlarmView> {
   Widget build(BuildContext context) {
     _activateAlarmsOnInit();
     AppStrings strings = AppStrings();
-    
+
     return FutureBuilder<dynamic>(
         future: DB.instance.retrieveAlarm(),
         builder: (context, snapshot) {
@@ -45,7 +45,6 @@ class _AlarmViewState extends State<AlarmView> {
               //shrinkWrap: true,
               itemCount: snapshot.data!.length,
               itemBuilder: (BuildContext context, int index) {
-                
                 return InkWell(
                   child: Column(
                     children: [
@@ -88,8 +87,10 @@ class _AlarmViewState extends State<AlarmView> {
                       Row(
                         children: [
                           Text(
-                            snapshot.data[index].dayless ? "${strings.strHour} ${snapshot.data[index].time.toString().split('.')[0].split(' ')[1]}" : //Add Hour in the interface.
-                            "${strings.strDay} ${snapshot.data[index].time.toString().split('.')[0]}",
+                            snapshot.data[index].dayless
+                                ? "${strings.strHour} ${snapshot.data[index].time.toString().split('.')[0].split(' ')[1]}"
+                                : //Add Hour in the interface.
+                                "${strings.strDay} ${snapshot.data[index].time.toString().split('.')[0]}",
                             style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.width * 0.05),
@@ -98,9 +99,15 @@ class _AlarmViewState extends State<AlarmView> {
                       ),
                     ],
                   ),
-                  onTap: () async { await alarmBottomSheet(context, snapshot.data[index]).then((value) => setState(() {
-                        strings = AppStrings();
-                      },),);},
+                  onTap: () async {
+                    await alarmBottomSheet(context, snapshot.data[index]).then(
+                      (value) => setState(
+                        () {
+                          strings = AppStrings();
+                        },
+                      ),
+                    );
+                  },
                 );
               },
             ),

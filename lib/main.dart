@@ -1,7 +1,6 @@
 import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_clock/controller/navigation_controller.dart';
-import 'package:mobile_clock/view/clock_view.dart';
 
 void main() async {
   runApp(const MyApp());

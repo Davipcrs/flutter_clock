@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:mobile_clock/view/add_alarm_view.dart';
 import 'package:mobile_clock/view/alarm_view.dart';
 
 class HomePage extends StatefulWidget {

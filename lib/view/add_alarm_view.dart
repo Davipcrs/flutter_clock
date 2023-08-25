@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_clock/controller/db.dart';
 import 'package:mobile_clock/model/alarm_model.dart';
+import 'package:mobile_clock/view/date_picker_view.dart';
 import 'package:mobile_clock/view/time_picker_view.dart';
 
 class AddAlarmView extends StatefulWidget {
@@ -18,7 +19,8 @@ class _AddAlarmViewState extends State<AddAlarmView> {
   late String timeMinute;
   late String dateDay;
   late String dateMonth;
-  late TimeOfDay? timeOfDay;
+  late TimeOfDay? timeOfDay = TimeOfDay(
+      hour: dateTimeController.hour, minute: dateTimeController.minute);
   bool nameControllerErrorValidator = false;
 
   @override
@@ -27,13 +29,29 @@ class _AddAlarmViewState extends State<AddAlarmView> {
     timeCorrection();
   }
 
+  void _dateGetter(context) async {
+    DateTime? dateTime = await DatePicker(context);
+    if (dateTime != null) {
+      dateTimeController = DateTime(
+        dateTime.year,
+        dateTime.month,
+        dateTime.day,
+        timeOfDay!.hour.toInt(),
+        timeOfDay!.minute.toInt(),
+      );
+    }
+    setState(() {
+      timeCorrection();
+    });
+  }
+
   void _timeGetter(context, time) async {
     timeOfDay = await timePicker(context, time);
     if (timeOfDay != null) {
       dateTimeController = DateTime(
-        DateTime.now().year,
-        DateTime.now().month,
-        DateTime.now().day,
+        dateTimeController.year,
+        dateTimeController.month,
+        dateTimeController.day,
         timeOfDay!.hour.toInt(),
         timeOfDay!.minute.toInt(),
       );
@@ -72,13 +90,13 @@ class _AddAlarmViewState extends State<AddAlarmView> {
       return;
     }
     AlarmModel alarmModel = AlarmModel(
-      id: 0,
-      isActive: true,
-      name: nameController.text,
-      desc: descriptionController.text,
-      time: dateTimeController,
-      dayless: true //dayless alarms
-    );
+        id: 0,
+        isActive: true,
+        name: nameController.text,
+        desc: descriptionController.text,
+        time: dateTimeController,
+        dayless: true //dayless alarms
+        );
     DB.instance.insertAlarm(alarmModel);
 
     nameController.clear();
@@ -104,8 +122,9 @@ class _AddAlarmViewState extends State<AddAlarmView> {
                   keyboardType: TextInputType.text,
                   decoration: InputDecoration(
                     labelText: 'Enter alarm Name',
-                    errorText:
-                        nameControllerErrorValidator ? 'Name cant be empty' : null,
+                    errorText: nameControllerErrorValidator
+                        ? 'Name cant be empty'
+                        : null,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -138,11 +157,12 @@ class _AddAlarmViewState extends State<AddAlarmView> {
                         child: Text(
                           '$dateDay/$dateMonth',
                           style: TextStyle(
-                              fontSize: MediaQuery.of(context).size.width * 0.1),
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.1),
                         ),
                       ),
                     ),
-                    onTap: () => null,
+                    onTap: () => _dateGetter(context),
                   ),
                   InkWell(
                     child: Container(
@@ -155,7 +175,8 @@ class _AddAlarmViewState extends State<AddAlarmView> {
                         child: Text(
                           '$timeHour:$timeMinute',
                           style: TextStyle(
-                              fontSize: MediaQuery.of(context).size.width * 0.1),
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.1),
                         ),
                       ),
                     ),
@@ -176,7 +197,7 @@ class _AddAlarmViewState extends State<AddAlarmView> {
                       descriptionController.clear();
                       dateTimeController = DateTime.now();
                       Navigator.of(context).pop();
-                      },
+                    },
                     child: const Text('Cancel'),
                   ),
                   ElevatedButton(

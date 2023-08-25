@@ -9,16 +9,19 @@ class RouteGen{
 
     switch (settings.name){
       case '/':
-        return MaterialPageRoute(builder: (_) => HomePage());
+        return MaterialPageRoute(builder: (_) => const HomePage());
 
       case '/addAlarm':
-        return MaterialPageRoute(builder: (_) => AddAlarmView());
+        return MaterialPageRoute(builder: (_) => const AddAlarmView());
 
       case '/editAlarm':
         return MaterialPageRoute(builder: (_) => EditAlarmView(args: args)); 
 
+      case '/viewAlarm':
+        return MaterialPageRoute(builder: (_) => EditAlarmView(args: args)); 
+
       default:
-        return MaterialPageRoute(builder: (_) => HomePage());
+        return MaterialPageRoute(builder: (_) => const HomePage());
 
     }
   }

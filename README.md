@@ -15,12 +15,12 @@ Application still under construction, to be an alternative to the default mobile
 </pre>
 ## TODO FEATURES:
 
-BottomSheet (Finish navigation)\
-(Need this to finsh navigation):\
-View Alarm view\
-Delete Alarm Dialog
+Life Quality Updates.
 
 ## IMPLEMENTED FEATURES:
+(BASIC APP FUNCIONATILY IMPLEMENTED)\
+\
+
 Local Storage \
 Add alarm view \
 Database CRUD\
@@ -31,6 +31,7 @@ Alarm DataModel and Conversion\
 View navigation\
 Alarm auto activation\
 Edit View\
+Delete Alarm Dialog\
 Diference between day-less alarms and day specifics alarms in the database and model.\
 Date Specific alarms.
 
